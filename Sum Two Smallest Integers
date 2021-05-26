@@ -11,3 +11,29 @@ function sumTwoSmallestNumbers(numbers) {
   const minNum2 = Math.min(...newNumbers);
   return minNum + minNum2;
 }
+
+// Works with numerical sort
+function sumTwoSmallestNumbers(numbers) {
+  numbers.sort((a, b) => a - b);
+  return numbers[0] + numbers[1];
+}
+
+// Working on a third solution
+
+function sumTwoSmallestNumbers(numbers) {
+  
+  let smallestNum = numbers[0]
+  let secondSmallestNum;
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] < smallestNum) {
+      smallestNum = numbers[i];
+    } 
+  }
+  for (let j = 0; j < numbers.length; j++) {
+    if (numbers[j] > smallestNum) {
+      secondSmallestNum = numbers[j];
+    } 
+    
+  }
+  
+}
