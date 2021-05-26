@@ -1,0 +1,22 @@
+// Create a function that takes an array of numbers and return both the minimum and maximum numbers, in that order.
+
+// Using the array.reduce() iterator method
+
+function minMax(arr) {
+		const maxNum = arr.reduce((accumulator, currentValue) => {
+		if (accumulator > currentValue) {
+			return accumulator;
+		} else {
+			return currentValue;
+		}
+	})
+		const minNum = arr.reduce((accumulator, currentValue) => {
+		if (accumulator < currentValue) {
+			return accumulator;
+		} else {
+			return currentValue;
+		}
+	})
+		const newArr = [minNum, maxNum];
+		return newArr;
+}
