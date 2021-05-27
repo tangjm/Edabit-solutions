@@ -1,0 +1,42 @@
+// https://www.codewars.com/kata/563b662a59afc2b5120000c6/javascript
+
+
+// My solution
+
+function nbYear(p0, percent, aug, p) {
+   
+  const popIncrease = [];
+  
+  while (p0 < p) {
+    popIncrease.push(p0);
+    p0 += p0 * (percent * 0.01) + aug;
+  }
+  
+  const numElements = popIncrease.length;
+  return numElements;
+}
+
+
+// Better solution
+
+function nbYear(p0, percent, aug, p) {
+
+  let year = 0;
+  
+  while (p0 < p) {
+    p0 += p0 * (percent / 100) + aug;
+    year++;
+  }
+  return year;
+}
+
+// Simplest solution
+
+function nbYear(p0, percent, aug, p) {
+  
+  for (var i = 0; p0 < p; i++) {
+    p0 = p0 * (1 + percent / 100) + aug;
+  }
+  return i;
+}
+
