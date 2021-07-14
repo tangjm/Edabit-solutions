@@ -13,27 +13,46 @@ function sumTwoSmallestNumbers(numbers) {
 }
 
 // Works with numerical sort
-function sumTwoSmallestNumbers(numbers) {
-  numbers.sort((a, b) => a - b);
-  return numbers[0] + numbers[1];
+function sumTwoSmallestNums(arr) {
+  let ans = arr.filter(n => n > 0).sort((a, b) => a - b);
+  return ans[0] + ans[1];
 }
 
-// Working on a third solution
+// Third solution
 
-function sumTwoSmallestNumbers(numbers) {
-  
-  let smallestNum = numbers[0]
-  let secondSmallestNum;
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] < smallestNum) {
-      smallestNum = numbers[i];
+function sumTwoSmallestNums(arr) {
+    // leaves us with Z^+
+    let positiveArr = arr.filter(n => n > 0);
+    let smallestNum = positiveArr[0];
+
+    // obtains the smallest integer
+    for (let i = 0; i < positiveArr.length; i++) {
+        if (positiveArr[i] < smallestNum) {
+            smallestNum = positiveArr[i];
+        }
+    }
+    // obtains the largest integer
+    let largestNum = -1;
+    for (let i = 0; i < positiveArr.length; i++) {
+        if (positiveArr[i] > smallestNum) {
+            largestNum = positiveArr[i];
+        }
+    }
+
+    let secondSmallestNum = largestNum;
+
+    // if the largest integer == smallest integer, then secondSmallest == smallest
+    if (largestNum == -1) {
+        secondSmallestNum = smallestNum;
+        return smallestNum + secondSmallestNum;
     } 
-  }
-  for (let j = 0; j < numbers.length; j++) {
-    if (numbers[j] > smallestNum) {
-      secondSmallestNum = numbers[j];
-    } 
-    
-  }
-  
+
+    // finds elements between the smallest and largest, and updates the new largest element
+    // until we reach the second smallest element.
+    for (let i = 0; i < positiveArr.length; i++) {
+        if (positiveArr[i] > smallestNum && positiveArr[i] < secondSmallestNum) {
+            secondSmallestNum = positiveArr[i];
+        }
+    }
+    return smallestNum + secondSmallestNum;
 }
